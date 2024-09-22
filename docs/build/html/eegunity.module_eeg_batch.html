@@ -310,52 +310,59 @@ TypeError: If the input types are not as expected.</p>
 <span id="eegunity-module-eeg-batch-eeg-scores-module"></span><h2>eegunity.module_eeg_batch.eeg_scores module<a class="headerlink" href="#module-eegunity.module_eeg_batch.eeg_scores" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="eegunity.module_eeg_batch.eeg_scores.butter_bandpass">
-<span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">butter_bandpass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lowcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#butter_bandpass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.butter_bandpass" title="Link to this definition">¶</a></dt>
-<dd><p>Create a Butterworth bandpass filter.</p>
-<p>Parameters:
-lowcut : float</p>
-<blockquote>
-<div><p>The low frequency cut-off for the filter.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>highcut<span class="classifier">float</span></dt><dd><p>The high frequency cut-off for the filter.</p>
+<span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">butter_bandpass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#butter_bandpass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.butter_bandpass" title="Link to this definition">¶</a></dt>
+<dd><p>Design a Butterworth bandpass filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>low_cut</strong> (<em>float</em>) – The lower cutoff frequency of the filter.</p></li>
+<li><p><strong>high_cut</strong> (<em>float</em>) – The upper cutoff frequency of the filter.</p></li>
+<li><p><strong>sampling_freq</strong> (<em>float</em>) – The sampling frequency of the input signal.</p></li>
+<li><p><strong>order</strong> (<em>int</em><em>, </em><em>optional</em>) – The order of the Butterworth filter (default is 4).</p></li>
+</ul>
 </dd>
-<dt>fs<span class="classifier">int</span></dt><dd><p>The sampling frequency of the data.</p>
-</dd>
-<dt>order<span class="classifier">int</span></dt><dd><p>The order of the filter.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>b</strong> (<em>ndarray</em>) – The numerator (b) coefficients of the IIR filter.</p></li>
+<li><p><strong>a</strong> (<em>ndarray</em>) – The denominator (a) coefficients of the IIR filter.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
-<p>Returns:
-b, a : ndarray, ndarray</p>
-<blockquote>
-<div><p>Numerator (b) and denominator (a) polynomials of the IIR filter.</p>
-</div></blockquote>
+<p class="rubric">Notes</p>
+<p>This function designs a bandpass filter using a Butterworth design.
+The cutoff frequencies are normalized by the Nyquist frequency,
+which is half the sampling frequency. The filter coefficients are
+returned as arrays suitable for use with <cite>scipy.signal.lfilter</cite> or
+similar filtering functions.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="eegunity.module_eeg_batch.eeg_scores.butter_bandpass_filter">
 <span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">butter_bandpass_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#butter_bandpass_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.butter_bandpass_filter" title="Link to this definition">¶</a></dt>
 <dd><p>Apply a bandpass filter to the data array.</p>
-<p>Parameters:
-data : ndarray</p>
-<blockquote>
-<div><p>Data to filter, with channels as rows.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>lowcut<span class="classifier">float</span></dt><dd><p>The low frequency cut-off for the filter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>ndarray</em>) – Data to filter, with channels as rows.</p></li>
+<li><p><strong>lowcut</strong> (<em>float</em>) – The low frequency cut-off for the filter.</p></li>
+<li><p><strong>highcut</strong> (<em>float</em>) – The high frequency cut-off for the filter.</p></li>
+<li><p><strong>fs</strong> (<em>int</em>) – The sampling frequency of the data.</p></li>
+<li><p><strong>order</strong> (<em>int</em><em>, </em><em>optional</em>) – The order of the filter (default is 4).</p></li>
+</ul>
 </dd>
-<dt>highcut<span class="classifier">float</span></dt><dd><p>The high frequency cut-off for the filter.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>y</strong> – The filtered data.</p>
 </dd>
-<dt>fs<span class="classifier">int</span></dt><dd><p>The sampling frequency of the data.</p>
-</dd>
-<dt>order<span class="classifier">int</span></dt><dd><p>The order of the filter.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
 </dd>
 </dl>
-<p>Returns:
-y : ndarray</p>
-<blockquote>
-<div><p>The filtered data.</p>
-</div></blockquote>
+<p class="rubric">Notes</p>
+<p>This function uses a Butterworth bandpass filter designed with the
+specified cut-off frequencies and order. The filter is applied using
+zero-phase filtering with <cite>scipy.signal.filtfilt</cite>, which ensures
+that the filtered signal is not phase-shifted.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -363,21 +370,26 @@ y : ndarray</p>
 <span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">calculate_beta_amplitude_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beta_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#calculate_beta_amplitude_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.calculate_beta_amplitude_score" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate Score 4 based on the percentage of beta wave samples in each channel
 that do not exceed the maximum amplitude threshold.</p>
-<p>Parameters:
-beta_data : ndarray</p>
-<blockquote>
-<div><p>The EEG data filtered in the beta band, expected to be a 2D array
-where rows represent channels and columns represent amplitude at each time point.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>threshold<span class="classifier">float</span></dt><dd><p>The maximum amplitude threshold for the beta waves (in microvolts, μV).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>beta_data</strong> (<em>ndarray</em>) – The EEG data filtered in the beta band, expected to be a 2D array
+where rows represent channels and columns represent amplitudes at each time point.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The maximum amplitude threshold for the beta waves (in microvolts, μV). Default is 20.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The average percentage of samples across all channels that do not exceed the threshold.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
-<p>Returns:
-float</p>
-<blockquote>
-<div><p>The average percentage of samples across all channels not exceeding the threshold.</p>
-</div></blockquote>
+<p class="rubric">Notes</p>
+<p>This function counts the number of samples in each channel that are less than or equal
+to the specified threshold and calculates the percentage of such samples relative to the
+total number of samples in that channel. The final score is the average percentage across
+all channels.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -385,73 +397,68 @@ float</p>
 <span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">calculate_beta_sinusoidal_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fft_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#calculate_beta_sinusoidal_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.calculate_beta_sinusoidal_score" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the beta sinusoidal score by analyzing the proportion of significant energy
 in the FFT data.</p>
-<p>Parameters:
-fft_data : ndarray</p>
-<blockquote>
-<div><p>The FFT results of the EEG data, expected to be a 2D array where each row represents the FFT results of a channel.</p>
-</div></blockquote>
-<p>Returns:
-float</p>
-<blockquote>
-<div><p>The sinusoidal score as a percentage.</p>
-</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fft_data</strong> (<em>ndarray</em>) – The FFT results of the EEG data, expected to be a 2D array where each row represents the FFT results of a channel.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The sinusoidal score as a percentage.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function computes the total and significant energy for each channel based on the FFT results.
+It applies a threshold to determine significant frequencies and calculates the score as the
+percentage of significant energy relative to the total energy. If the total energy is zero,
+the score for that channel is set to zero to avoid division errors.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="eegunity.module_eeg_batch.eeg_scores.calculate_dominant_frequency">
 <span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">calculate_dominant_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#calculate_dominant_frequency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.calculate_dominant_frequency" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the dominant frequency of a signal.</p>
-<p>Parameters:
-signal : ndarray</p>
-<blockquote>
-<div><p>The signal array.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>fs<span class="classifier">int</span></dt><dd><p>The sampling frequency of the signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>ndarray</em>) – The signal array. This should be a 1D array representing the time-series data of the EEG signal.</p></li>
+<li><p><strong>fs</strong> (<em>int</em>) – The sampling frequency of the signal, representing the number of data points collected per second.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The dominant frequency of the signal, which is the frequency component that has the highest amplitude in the Fourier Transform of the signal.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
-<p>Returns:
-float</p>
-<blockquote>
-<div><p>The dominant frequency of the signal.</p>
-</div></blockquote>
+<p class="rubric">Notes</p>
+<p>This function computes the Fast Fourier Transform (FFT) of the input signal and identifies
+the frequency with the highest amplitude. The dominant frequency is determined from the
+positive frequency components of the FFT.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="eegunity.module_eeg_batch.eeg_scores.calculate_eeg_quality_scores">
 <span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">calculate_eeg_quality_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mne_io_raw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#calculate_eeg_quality_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.calculate_eeg_quality_scores" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate EEG scores for the given data.</p>
-<p>Parameters:
-mne_io_raw : mne.io.Raw</p>
-<blockquote>
-<div><p>MNE Raw object containing EEG data.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>normalize<span class="classifier">bool</span></dt><dd><p>Flag indicating whether to normalize the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mne_io_raw</strong> (<em>mne.io.Raw</em>) – MNE Raw object containing EEG data.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of EEG scores corresponding to different metrics.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
-<p>Returns:
-list</p>
-<blockquote>
-<div><p>List of EEG scores corresponding to different metrics.</p>
-</div></blockquote>
-<section id="usage">
-<h3>Usage:<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h3>
-<p>address = r’E:/test_dataset/test_sample_from_zenodo_saa.bdf’</p>
-<p>raw = mne.io.read_raw(address, preload=True)</p>
-<p>scores = calculate_eeg_quality_scores(raw)
-score_names = [</p>
-<blockquote>
-<div><p>“General Amplitude”,
-“Highest Amplitude”,
-“Dominant Frequency”,
-“Beta Sinusoidal”,
-“Beta Amplitude”,
-“Theta Amplitude”</p>
-</div></blockquote>
-<p>]
-plot_radar_chart(scores, score_names)</p>
-</section>
+<p class="rubric">Notes</p>
+<p>This function calculates various EEG quality scores based on different metrics.
+The scores are calculated using filtered data from the original EEG signals.
+If fewer channels are available, only selected scores are computed.
+Otherwise, additional metrics are included for a more comprehensive assessment.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -459,119 +466,143 @@ plot_radar_chart(scores, score_names)</p>
 <span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">calculate_general_amplitude_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#calculate_general_amplitude_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.calculate_general_amplitude_score" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate a general amplitude score based on the proportion of signal amplitudes
 that fall within a specific range.</p>
-<p>Parameters:
-data : ndarray</p>
-<blockquote>
-<div><p>2D array of EEG data where rows represent channels and columns represent amplitude at each time point.</p>
-</div></blockquote>
-<p>Returns:
-float</p>
-<blockquote>
-<div><p>The average score across all channels, normalized to 100.</p>
-</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>ndarray</em>) – 2D array of EEG data where rows represent channels and columns represent amplitudes at each time point.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The average score across all channels, normalized to 100.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function calculates the general amplitude score for each channel by counting the number of amplitudes
+within a specific range (-100 to 100) and dividing it by the total number of amplitudes. The scores are then
+averaged across all channels to obtain the final general amplitude score.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="eegunity.module_eeg_batch.eeg_scores.calculate_highest_amplitude_score">
 <span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">calculate_highest_amplitude_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#calculate_highest_amplitude_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.calculate_highest_amplitude_score" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the highest amplitude score for specific channels within the Alpha band.</p>
-<p>Parameters:
-data : ndarray</p>
-<blockquote>
-<div><p>The EEG data in the Alpha band, expected to be a 2D array where rows represent channels and columns represent amplitude at each time point.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>channel_indices<span class="classifier">list</span></dt><dd><p>List of indices for the channels of interest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>ndarray</em>) – The EEG data in the Alpha band, expected to be a 2D array where rows represent channels and columns represent amplitudes at each time point.</p></li>
+<li><p><strong>channel_indices</strong> (<em>list</em><em> of </em><em>int</em>) – List of indices for the channels of interest.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The calculated highest amplitude score, normalized to 100.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
-<p>Returns:
-float</p>
-<blockquote>
-<div><p>The calculated highest amplitude score, normalized to 100.</p>
-</div></blockquote>
+<p class="rubric">Notes</p>
+<p>This function first filters the data for the specified channels of interest.
+It then calculates the maximum amplitude for each channel. The amplitudes are sorted
+in descending order, and scoring is applied based on the percentile of each channel’s amplitude.
+The final score is the average of these scores, normalized to 100.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="eegunity.module_eeg_batch.eeg_scores.calculate_symmetry_score">
 <span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">calculate_symmetry_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channels_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channels_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#calculate_symmetry_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.calculate_symmetry_score" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the symmetry score between two sets of channels.</p>
-<p>Parameters:
-data : ndarray</p>
-<blockquote>
-<div><p>The EEG data, expected to be a 2D array where rows represent channels and columns represent amplitude at each time point.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>channels_left<span class="classifier">list</span></dt><dd><p>List of indices for the left channels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>ndarray</em>) – The EEG data, expected to be a 2D array where rows represent channels and columns represent amplitudes at each time point.</p></li>
+<li><p><strong>channels_left</strong> (<em>list</em><em> of </em><em>int</em>) – List of indices for the left channels.</p></li>
+<li><p><strong>channels_right</strong> (<em>list</em><em> of </em><em>int</em>) – List of indices for the right channels.</p></li>
+<li><p><strong>fs</strong> (<em>int</em>) – The sampling frequency of the data.</p></li>
+</ul>
 </dd>
-<dt>channels_right<span class="classifier">list</span></dt><dd><p>List of indices for the right channels.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The symmetry score between the two sets of channels, expressed as a percentage.</p>
 </dd>
-<dt>fs<span class="classifier">int</span></dt><dd><p>The sampling frequency of the data.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
-<p>Returns:
-float</p>
-<blockquote>
-<div><p>The symmetry score between the two sets of channels.</p>
-</div></blockquote>
+<p class="rubric">Notes</p>
+<p>This function filters the data for the specified left and right channels, calculates the dominant frequencies
+for each set of channels, and computes the correlation score between the dominant frequencies. The symmetry
+score is normalized to a range of 0 to 100.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="eegunity.module_eeg_batch.eeg_scores.calculate_theta_amplitude_score">
 <span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">calculate_theta_amplitude_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#calculate_theta_amplitude_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.calculate_theta_amplitude_score" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the percentage of data points not exceeding a specified amplitude threshold in the theta frequency band.</p>
-<p>Parameters:
-data : ndarray</p>
-<blockquote>
-<div><p>The EEG data, expected to be a 2D array where rows represent channels and columns represent amplitude at each time point.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>threshold<span class="classifier">float</span></dt><dd><p>The amplitude threshold for considering a data point as not exceeding.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>ndarray</em>) – The EEG data, expected to be a 2D array where rows represent channels and columns represent amplitudes at each time point.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – The amplitude threshold for considering a data point as not exceeding. Default is 30.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The average percentage of data points across all channels that do not exceed the threshold.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
 </dd>
 </dl>
-<p>Returns:
-float</p>
-<blockquote>
-<div><p>The average percentage of data points across all channels not exceeding the threshold.</p>
-</div></blockquote>
+<p class="rubric">Notes</p>
+<p>This function checks for data points in the theta frequency band that are below the specified threshold
+and calculates the percentage of such points for each channel. It returns the average percentage across
+all channels. If the input data is not already filtered for the theta band, appropriate filtering should
+be applied before using this function.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="eegunity.module_eeg_batch.eeg_scores.classify_channels">
 <span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">classify_channels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#classify_channels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.classify_channels" title="Link to this definition">¶</a></dt>
 <dd><p>Classify the given channels into different groups based on their location and type.</p>
-<p>Parameters:
-channels : list</p>
-<blockquote>
-<div><p>List of channel names.</p>
-</div></blockquote>
-<p>Returns:
-list</p>
-<blockquote>
-<div><p>List of channel indices that belong to Score 2.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>list</dt><dd><p>List of left-side channel indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>channels</strong> (<em>list</em>) – List of channel names.</p>
 </dd>
-<dt>list</dt><dd><p>List of right-side channel indices.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>list</em> – List of channel indices that belong to Score 2.</p></li>
+<li><p><em>list</em> – List of left-side channel indices.</p></li>
+<li><p><em>list</em> – List of right-side channel indices.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>This function classifies channels based on common EEG electrode naming conventions.
+Channels are grouped into frontal, temporal, parietal, occipital, and auricular categories.
+It distinguishes between left-side and right-side channels based on the suffix of their names,
+where odd-numbered suffixes typically denote left-side channels and even-numbered suffixes
+denote right-side channels. Midline and auricular channels are included in the Score 2 classification.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="eegunity.module_eeg_batch.eeg_scores.plot_radar_chart">
 <span class="sig-prename descclassname"><span class="pre">eegunity.module_eeg_batch.eeg_scores.</span></span><span class="sig-name descname"><span class="pre">plot_radar_chart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'EEG</span> <span class="pre">Scores'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eegunity/module_eeg_batch/eeg_scores.html#plot_radar_chart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#eegunity.module_eeg_batch.eeg_scores.plot_radar_chart" title="Link to this definition">¶</a></dt>
 <dd><p>Plot a radar chart for the given scores.</p>
-<p>Parameters:
-scores : list</p>
-<blockquote>
-<div><p>List of scores to plot.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>score_names<span class="classifier">list</span></dt><dd><p>Names corresponding to the scores.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scores</strong> (<em>list</em><em> of </em><em>float</em>) – List of scores to plot. Each score represents a metric for evaluating EEG quality.</p></li>
+<li><p><strong>score_names</strong> (<em>list</em><em> of </em><em>str</em>) – Names corresponding to the scores. These names describe the metrics for evaluating EEG quality.</p></li>
+<li><p><strong>title</strong> (<em>str</em><em>, </em><em>optional</em>) – Title for the radar chart (default is ‘EEG Scores’).</p></li>
+</ul>
 </dd>
-<dt>title<span class="classifier">str</span></dt><dd><p>Title for the radar chart.</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>This function creates a radar chart using the provided scores and score names.
+The radar chart is displayed using matplotlib.</p>
 </dd></dl>
 
 </section>
